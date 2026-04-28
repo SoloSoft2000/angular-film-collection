@@ -1,22 +1,26 @@
 <div>
   <h1>Film Catalog</h1>
   <div>
-    <app-search-form [(searchTerm)]="searchTerm" />
+    <app-search-form [(searchTerm)]="searchTerm" [appAutofocus]="'input'" />
+
     <p>{{ searchTerm() ? `Search term: ${searchTerm()}` : 'No search term entered' }}</p>
+
   </div>
   <button (click)="isOnlyFavorites.set(!isOnlyFavorites())">
     {{ isOnlyFavorites() ? 'Show All' : 'Show Favorites' }}
   </button>
-  @for (film of films(); track film.id) {
-    <div>
-      <h2>{{ film.title }}</h2>
-      <p>Year: {{ film.year }}</p>
-      <p>Genre: {{ film.genre }}</p>
-      <p>Rating: {{ film.rating }}</p>
-      <!-- <p>Duration: {{ film.duration }} minutes</p>
-            <p>{{ film.description }}</p> -->
-      <img [src]="film.posterUrl" [alt]="film.title" />
-      <button (click)="toggleFavorite(film.id)">fav</button>
-    </div>
+  @if (filteredFilms().length) {
+    @for (film of filteredFilms(); track film.id) {
+      <div>
+        <h2>{{ film.title }}</h2>
+        <p>Year: {{ film.year }}</p>
+        <p>Genre: {{ film.genre }}</p>
+        <p>Rating: {{ film.rating }}</p>
+        <img [src]="film.posterUrl" [alt]="film.title" />
+        <button (click)="toggleFavorite(film.id)">fav</button>
+      </div>
+    }
+  } @else {
+    <div>Nothing found</div>
   }
 </div>
