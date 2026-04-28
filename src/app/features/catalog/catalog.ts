@@ -1,14 +1,17 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal, model } from '@angular/core';
 import { FilmService } from '../../core/services/film.service';
 import { FilmModel } from '../../core/models/film.model';
+import { SearchForm } from '../../shared/components/search-form/search-form';
 
 @Component({
   selector: 'app-catalog',
-  imports: [],
+  imports: [SearchForm],
   templateUrl: './catalog.html',
   styleUrl: './catalog.scss',
 })
 export class Catalog {
+  searchTerm = model('');
+
   filmService = inject(FilmService);
   isOnlyFavorites = signal(false);
 
