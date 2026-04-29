@@ -12,4 +12,7 @@
       <li><a routerLink="/about" routerLinkActive="active-button">About</a></li>
     </ul>
   </nav>
+    <button (click)="toggleTheme()" class="material-symbols-outlined">
+      {{ isDarkMode ? 'light_mode' : 'dark_mode' }}
+    </button>
 </div>
