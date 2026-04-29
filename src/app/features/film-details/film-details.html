@@ -1,0 +1,8 @@
+<div>
+  @if (film()) {
+    <h1>{{ film()?.title }}</h1>
+    duration: {{ film()?.duration | timePipe }}
+  } @else {
+    <h1>Film with id: {{ filmId() }} not found</h1>
+  }
+</div>

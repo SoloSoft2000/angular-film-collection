@@ -9,6 +9,12 @@ export const routes: Routes = [
     title: 'Film Collection Catalog'
   },
   {
+    path: 'film/:id',
+    loadComponent: () => import('./features/film-details/film-details')
+      .then(m => m.FilmDetails),
+    title: 'Film Details'
+  },
+  {
     path: 'about',
     loadComponent: () => import('./features/about/about')
       .then(m => m.About),
