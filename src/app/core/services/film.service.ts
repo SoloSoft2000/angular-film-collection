@@ -18,6 +18,12 @@ export class FilmService {
     return this.filmsSignal().find((film) => film.id === id);
   }
 
+  getGenres(): string[] {
+    const genreSet = new Set<string>();
+    this.filmsSignal().forEach(v => genreSet.add(v.genre));
+    return [...genreSet];
+  }
+
   toggleFavorite(id: number): void {
     const film = this.getFilmById(id);
     if (film) {

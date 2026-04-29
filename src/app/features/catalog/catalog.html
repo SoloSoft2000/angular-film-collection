@@ -2,23 +2,15 @@
   <h1>Film Catalog</h1>
   <div>
     <app-search-form [(searchTerm)]="searchTerm" [appAutofocus]="'input'" />
-
-    <p>{{ searchTerm() ? `Search term: ${searchTerm()}` : 'No search term entered' }}</p>
-
+    <app-select-genre [(selectedGenre)]="selectedGenre" />
+    <p>{{selectedGenre()}}</p>
+    <button (click)="isOnlyFavorites.set(!isOnlyFavorites())">
+      {{ isOnlyFavorites() ? 'Show All' : 'Show Favorites' }}
+    </button>
   </div>
-  <button (click)="isOnlyFavorites.set(!isOnlyFavorites())">
-    {{ isOnlyFavorites() ? 'Show All' : 'Show Favorites' }}
-  </button>
   @if (filteredFilms().length) {
     @for (film of filteredFilms(); track film.id) {
-      <div>
-        <h2>{{ film.title }}</h2>
-        <p>Year: {{ film.year }}</p>
-        <p>Genre: {{ film.genre }}</p>
-        <p>Rating: {{ film.rating }}</p>
-        <img [src]="film.posterUrl" [alt]="film.title" />
-        <button (click)="toggleFavorite(film.id)">fav</button>
-      </div>
+      <app-film-card [film]="film" (toggleFavorite)="toggleFavorite(film.id)" />
     }
   } @else {
     <div>Nothing found</div>

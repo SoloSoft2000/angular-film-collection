@@ -1,0 +1,9 @@
+<label
+  >Choose a genre:
+  <select name="genre" id="genre-select" [value]="selectedGenre()" (change)="onSelectChange($event)">
+    <option value="All">All genres</option>
+    @for (genre of genres; track genre) {
+      <option [value]="genre" [id]="genre">{{ genre }}</option>
+    }
+  </select>
+</label>
