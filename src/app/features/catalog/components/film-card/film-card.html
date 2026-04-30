@@ -1,0 +1,20 @@
+<a [routerLink]="['/film', film().id]" class="card">
+  <div class="card-header">
+    <button (click)="handleClick($event)" class="material-symbols-outlined" [class.favorite]="film().isFavorite">
+      favorite
+    </button>
+    <h2>
+      {{ film().title }}
+    </h2>
+  </div>
+  <p>
+    Year: <b>{{ film().year }}</b>
+  </p>
+  <p>
+    Genre: <b>{{ film().genre }}</b>
+  </p>
+  <p>
+    Rating: <b>{{ film().rating }}</b>
+  </p>
+  <img [src]="film().posterUrl" [alt]="film().title" />
+</a>

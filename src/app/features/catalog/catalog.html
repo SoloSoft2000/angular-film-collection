@@ -1,0 +1,18 @@
+<div>
+  <div class="catalog-filter">
+    <app-search-form [(searchTerm)]="searchTerm" [appAutofocus]="'input'" />
+    <app-select-genre [(selectedGenre)]="selectedGenre" />
+    <button (click)="isOnlyFavorites.set(!isOnlyFavorites())">
+      {{ isOnlyFavorites() ? 'Show All' : 'Show Favorites' }}
+    </button>
+  </div>
+  @if (filteredFilms().length) {
+    <div class="catalog-list">
+    @for (film of filteredFilms(); track film.id) {
+      <app-film-card [film]="film" (toggleFavorite)="toggleFavorite(film.id)" />
+    }
+    </div>
+  } @else {
+    <div class="catalog-empty">Nothing found</div>
+  }
+</div>
