@@ -1,12 +1,12 @@
 import { Component, computed, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FilmService } from '../../core/services/film.service';
 import { FilmModel } from '../../core/models/film.model';
 import { TimePipe } from '../../shared/pipes/time-pipe';
 
 @Component({
   selector: 'app-film-details',
-  imports: [TimePipe],
+  imports: [TimePipe, RouterLink],
   templateUrl: './film-details.html',
   styleUrl: './film-details.scss',
 })
@@ -18,4 +18,8 @@ export class FilmDetails {
   film = computed<FilmModel | null>(
     () => this.filmService.getFilmById(Number(this.filmId())) || null,
   );
+
+  toggleFavorite() {
+    this.filmService.toggleFavorite(this.filmId());
+  }
 }

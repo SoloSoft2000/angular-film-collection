@@ -1,8 +1,53 @@
-<div>
+<div class="film-details">
   @if (film()) {
-    <h1>{{ film()?.title }}</h1>
-    duration: {{ film()?.duration | timePipe }}
+    <div class="film-container">
+      <div class="film-poster">
+        <img [src]="film()?.posterUrl" [alt]="film()?.title" />
+      </div>
+      
+      <div class="film-info">
+        <h1>{{ film()?.title }}</h1>
+        
+        <div class="film-meta">
+          <div class="meta-item">
+            <span class="meta-label">Year:</span>
+            <span class="meta-value">{{ film()?.year }}</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Genre:</span>
+            <span class="meta-value">{{ film()?.genre }}</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Rating:</span>
+            <span class="meta-value">{{ film()?.rating }}</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Duration:</span>
+            <span class="meta-value">{{ film()?.duration | timePipe }}</span>
+          </div>
+        </div>
+
+        <p class="film-description">{{ film()?.description }}</p>
+        <div class="flex">
+        <button class="back-link" (click)="toggleFavorite()">
+          <span class="material-symbols-outlined">
+            favorite
+          </span>
+          {{ film()?.isFavorite ? 'Remove From Favorite' : 'Add To Favorite'}}
+        </button>
+        <a routerLink="/" class="back-link">
+          <span class="material-symbols-outlined">arrow_back</span>
+          Back to Catalog
+        </a></div>
+      </div>
+    </div>
   } @else {
-    <h1>Film with id: {{ filmId() }} not found</h1>
+    <div class="film-not-found">
+      <h1>Film with id: {{ filmId() }} not found</h1>
+      <a routerLink="/" class="back-link">
+        <span class="material-symbols-outlined">arrow_back</span>
+        Back to Catalog
+      </a>
+    </div>
   }
 </div>

@@ -1,6 +1,14 @@
-import { Routes } from '@angular/router';
+import { ResolveFn, Routes } from '@angular/router';
 import { Catalog } from './features/catalog/catalog';
+import { inject } from '@angular/core';
+import { FilmService } from './core/services/film.service';
 
+const titleResolver: ResolveFn<string> = (route) => {
+  const filmService = inject(FilmService);
+  const filmId = Number(route.params['id']);
+  const film = filmService.getFilmById(filmId);
+  return `Film Details: ${film?.title}`;
+};
 
 export const routes: Routes = [
   {
@@ -12,7 +20,7 @@ export const routes: Routes = [
     path: 'film/:id',
     loadComponent: () => import('./features/film-details/film-details')
       .then(m => m.FilmDetails),
-    title: 'Film Details'
+    title: titleResolver
   },
   {
     path: 'about',
