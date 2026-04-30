@@ -1,0 +1,50 @@
+:host {
+  display: block;
+}
+
+footer {
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  padding: var(--spacing-md);
+  margin-top: auto;
+  transition: var(--transition);
+
+  @media (max-width: 768px) {
+    padding: var(--spacing-md);
+  }
+
+  @media (max-width: 480px) {
+    padding: var(--spacing-sm);
+  }
+}
+
+div {
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: center;
+  text-align: center;
+}
+
+p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin: 0;
+  line-height: 1.6;
+
+  @media (max-width: 480px) {
+    font-size: 0.85rem;
+  }
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: var(--transition);
+  position: relative;
+
+  &:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+  }
+}
